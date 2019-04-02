@@ -13,17 +13,18 @@ public class Product {
     private final String title;
     @SerializedName("colorSwatches")
     private final List<ColorSwatches> colorSwatches;
-    @SerializedName("nowPrice")
-    private final String nowPrice;
-    @SerializedName("priceLabel")
-    private final String priceLabel;
 
-    public Product(String productId, String title, List<ColorSwatches> colorSwatches, String nowPrice, String priceLabel) {
+    @SerializedName("price")
+    private final Price price;
+
+    public Product(String productId,
+                    String title,
+                    List<ColorSwatches> colorSwatches,
+                    Price price) {
         this.productId = productId;
         this.title = title;
         this.colorSwatches = colorSwatches;
-        this.nowPrice = nowPrice;
-        this.priceLabel = priceLabel;
+        this.price = price;
     }
 
     public String getProductId() {
@@ -38,12 +39,8 @@ public class Product {
         return colorSwatches;
     }
 
-    public String getNowPrice() {
-        return nowPrice;
-    }
-
-    public String getPriceLabel() {
-        return priceLabel;
+    public Price getPrice() {
+        return price;
     }
 
     @Override public boolean equals(Object o) {
@@ -55,12 +52,11 @@ public class Product {
         return Objects.equals(getProductId(), product.getProductId()) &&
                Objects.equals(getTitle(), product.getTitle()) &&
                Objects.equals(getColorSwatches(), product.getColorSwatches()) &&
-               Objects.equals(getNowPrice(), product.getNowPrice()) &&
-               Objects.equals(getPriceLabel(), product.getPriceLabel());
+               Objects.equals(getPrice(), product.getPrice());
     }
 
     @Override public int hashCode() {
-        return Objects.hash(getProductId(), getTitle(), getColorSwatches(), getNowPrice(), getPriceLabel());
+        return Objects.hash(getProductId(), getTitle(), getColorSwatches(), getPrice());
     }
 
     @Override public String toString() {
@@ -68,8 +64,7 @@ public class Product {
                "productId='" + productId + '\'' +
                ", title='" + title + '\'' +
                ", colorSwatches=" + colorSwatches +
-               ", nowPrice='" + nowPrice + '\'' +
-               ", priceLabel='" + priceLabel + '\'' +
+               ", price=" + price +
                '}';
     }
 }

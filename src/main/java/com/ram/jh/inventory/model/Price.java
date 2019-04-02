@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Objects;
 
+import static java.lang.Integer.parseInt;
+import static java.lang.Math.subtractExact;
+
 public class Price {
 
     @SerializedName("was")
@@ -13,19 +16,97 @@ public class Price {
     @SerializedName("then2")
     String then2;
     @SerializedName("now")
-    Object now;
+    String now;
     @SerializedName("uom")
     String uom;
+
     @SerializedName("currency")
     String currency;
 
+    public Price(String was, String then1, String then2, String now, String uom, String currency) {
+        this.was = was;
+        this.then1 = then1;
+        this.then2 = then2;
+        this.now = now;
+        this.uom = uom;
+        this.currency = currency;
+    }
+
     //default constructor for Gson Parser
-    public Price(){
+
+    public Price() {
 
     }
 
-    public Object getNow(){
+    public String getWas() {
+        return was;
+    }
+
+    public String getThen1() {
+        return then1;
+    }
+
+    public String getThen2() {
+        return then2;
+    }
+
+    public String getNow() {
         return now;
+    }
+
+    public String getUom() {
+        return uom;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public String calculatePriceReduction() {
+
+        if (!getWas().isEmpty()) {
+
+            if (!getNow().isEmpty()) {
+
+                int wasInt = parseInt(getWas());
+                int nowInt = parseInt(getNow());
+                return String.valueOf(subtractExact(wasInt, nowInt));
+            } else {
+                getWas();
+            }
+        } else {
+            if (!getNow().isEmpty()) {
+                return getNow();
+            } else {
+                return "0.0";
+            }
+        }
+
+        return "0";
+    }
+
+    public Double calcPriceReduction() {
+
+        if (!getWas().isEmpty()) {
+
+            if (!getNow().isEmpty()) {
+                double wasDouble = Double.parseDouble(getWas());
+                double nowDouble = Double.parseDouble(getNow());
+                return wasDouble - nowDouble;
+            } else {
+                return Double.parseDouble(getWas());
+            }
+        } else {
+            if (!getNow().isEmpty()) {
+                return Double.parseDouble(getNow());
+            } else {
+                return 0D;
+            }
+        }
+    }
+
+    private Double calcDiscount() {
+        return ((Double.parseDouble(calculatePriceReduction())) / (Double.parseDouble(getWas()))) * 100;
     }
 
     @Override public boolean equals(Object o) {

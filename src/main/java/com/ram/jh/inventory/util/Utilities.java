@@ -14,4 +14,6 @@ public class Utilities {
                         .map(Map.Entry::getValue)
                         .orElse(Constants.RGB_COLOR_NOT_FOUND);
     }
+
+
 }
