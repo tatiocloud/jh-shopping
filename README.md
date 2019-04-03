@@ -4,9 +4,14 @@
     1) Find the Reduced Pricing from List of Products for a Category.
     2) Based on label, format the pricingLabel for the output.
 
-##Assumptions.
+## Assumptions.
 
-    1) BAsed on the labelForFormat provided in the request,otherwise defaulted to true.
+    1) Formating is Based on the labelForFormat provided in the request,otherwise defaulted to true.
+    2) Unit and Integration Tests provided at high level and use of functional programming is used.
+
+## Can this be improved, Yes all validations can be improved and can be used as functions in java8.
+
+## Jackson JSON has been used where ever neccesary.
      
 ## How to run.
 This is maven based Spring boot application. I use Intellij, so open the project in the Intellij/Eclipse as maven
