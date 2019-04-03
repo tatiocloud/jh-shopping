@@ -1,19 +1,17 @@
 package com.ram.jh.inventory.model;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.util.Objects;
 
-public class ColorSwatches {
+public class ColorSwatchesRGB {
 
-    @SerializedName("color")
-    private final String color;
-    @SerializedName("rgbColor")
-    private final String rgbColor;
-    @SerializedName("skuId")
-    private final String skuId;
+    private String color;
+    private String rgbColor;
+    private String skuId;
 
-    public ColorSwatches(String color, String rgbColor, String skuId) {
+    public ColorSwatchesRGB(){
+        //for jackson json parser
+    }
+    public ColorSwatchesRGB(String color, String rgbColor, String skuId) {
         this.color = color;
         this.rgbColor = rgbColor;
         this.skuId = skuId;
@@ -27,27 +25,27 @@ public class ColorSwatches {
         return rgbColor;
     }
 
-    public String getSkuid() {
+    public String getSkuId() {
         return skuId;
     }
 
     @Override public boolean equals(Object o) {
         if (this == o)
             return true;
-        if (!(o instanceof ColorSwatches))
+        if (!(o instanceof ColorSwatchesRGB))
             return false;
-        ColorSwatches that = (ColorSwatches) o;
+        ColorSwatchesRGB that = (ColorSwatchesRGB) o;
         return Objects.equals(getColor(), that.getColor()) &&
                Objects.equals(getRgbColor(), that.getRgbColor()) &&
-               Objects.equals(getSkuid(), that.getSkuid());
+               Objects.equals(getSkuId(), that.getSkuId());
     }
 
     @Override public int hashCode() {
-        return Objects.hash(getColor(), getRgbColor(), getSkuid());
+        return Objects.hash(getColor(), getRgbColor(), getSkuId());
     }
 
     @Override public String toString() {
-        return "ColorSwatches{" +
+        return "ColorSwatchesRGB{" +
                "color='" + color + '\'' +
                ", rgbColor='" + rgbColor + '\'' +
                ", skuId='" + skuId + '\'' +

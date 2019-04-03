@@ -1,16 +1,21 @@
 package com.ram.jh.inventory.model;
 
-import com.google.gson.annotations.SerializedName;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Products {
 
-    @SerializedName("products")
-    public List<Product> products;
 
-    public Products() {
+    private List<Product> products;
 
+    public Products(@JsonProperty("products") List<Product> products) {
+        this.products = products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public List<Product> getProducts() {

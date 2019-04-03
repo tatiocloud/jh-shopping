@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class LookupRGBMap {
+public class DataConstants {
 
     public static final Map<String, String> colorLookupMap = Stream.of(
                     new AbstractMap.SimpleImmutableEntry<>("Black", "000000"),
@@ -24,6 +24,11 @@ public class LookupRGBMap {
                     new AbstractMap.SimpleImmutableEntry<>("Purple", "800080"),
                     new AbstractMap.SimpleImmutableEntry<>("Teal", "008080"),
                     new AbstractMap.SimpleImmutableEntry<>("Navy", "000080")
+    ).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+
+    public static final Map<String, String> cuurencyMap = Stream.of(
+                    new AbstractMap.SimpleImmutableEntry<>("GBP", "£")
     ).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
 }

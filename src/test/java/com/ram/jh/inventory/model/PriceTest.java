@@ -1,54 +1,46 @@
 package com.ram.jh.inventory.model;
 
-import org.junit.Assert;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
+
+import java.io.IOException;
+
+import static org.junit.Assert.assertEquals;
 
 public class PriceTest {
 
-    String was = "";
-    String then1 = "";
-    String then2 = "";
-    String now = "";
-    String uom = "";
-    String currency = "£";
-
-    Price price = new Price(was, then1, then2, now, uom, currency);
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
-    public void test_now_and_was_empty_and_returns_zero() {
-        String was = "";
-        String then1 = "";
-        String then2 = "";
-        String now = "";
-        String uom = "";
-        String currency = "£";
-
-        Price price = createPricedObj(was, then1, then2, now, uom, currency);
-        String formatedPrice = price.calculatePriceReduction();
-        Assert.assertTrue(formatedPrice.equalsIgnoreCase("0.0"));
+    public void shouldConvertJsonIntoPrice() {
+        Price readValue = createPriceRecordWithStringInPriceNow();
+        assertEquals("", readValue.was);
+        assertEquals("", readValue.then1);
+        assertEquals("", readValue.then2);
+        assertEquals("19.00", readValue.now);
+        assertEquals("", readValue.uom);
+        assertEquals("GBP", readValue.currency);
     }
 
-    @Test
-    public void test_was_empty_returns_now() {
-        String was = "";
-        String then1 = "";
-        String then2 = "";
-        String now = "10";
-        String uom = "";
-        String currency = "£";
-
-        Price price = createPricedObj(was, then1, then2, now, uom, currency);
-        String formatedPrice = price.calculatePriceReduction();
-        Assert.assertTrue(formatedPrice.equalsIgnoreCase("10"));
+    public Price createPriceRecordWithStringInPriceNow() {
+        String content = "{\"was\":\"\",\"then1\":\"\",\"then2\":\"\",\"now\":\"19.00\",\"uom\":\"\",\"currency\":\"GBP\"}";
+        Price readValue;
+        try {
+            readValue = objectMapper.readValue(content, Price.class);
+            return readValue;
+        } catch (IOException e) {
+            return null;
+        }
     }
 
-    private Price createPricedObj(
-                    String was,
-                    String then1,
-                    String then2,
-                    String now,
-                    String uom,
-                    String currency) {
-        return new Price(was, then1, then2, now, uom, currency);
+    public Price createPriceRecordWithObjectInPriceNow() {
+        String content = "{\"was\":\"\",\"then1\":\"\",\"then2\":\"\",\"now\":{\"from\":\"55.00\",\"to\":\"100.00\"},\"uom\":\"\",\"currency\":\"GBP\"}";
+        Price readValue;
+        try {
+            readValue = objectMapper.readValue(content, Price.class);
+        } catch (IOException e) {
+            return null;
+        }
+        return readValue;
     }
 }

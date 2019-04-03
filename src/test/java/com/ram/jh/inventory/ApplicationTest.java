@@ -6,14 +6,10 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.mockito.stubbing.Answer;
-import org.mockito.stubbing.OngoingStubbing;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
@@ -38,8 +34,10 @@ public class ApplicationTest {
         String someTitle = "someTitle";
         when(product.getTitle()).thenReturn(someTitle);
 
-        when(mockObj.getListOfProductFromURL()).thenReturn(products);
-        Products productsReturned = mockObj.getListOfProductFromURL();
+        //when(mockObj.getListOfProductFromURL()).thenReturn(products);
+        //Products productsReturned = mockObj.getListOfProductFromURL();
+        when(mockObj.getJsonFromFile()).thenReturn(products);
+        Products productsReturned = mockObj.getJsonFromFile();
         List<Product> productListMock = new ArrayList<>();
         productListMock.add(product);
         when(productsReturned.getProducts()).thenReturn(productListMock);

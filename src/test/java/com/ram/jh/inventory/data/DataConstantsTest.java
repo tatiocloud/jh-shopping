@@ -1,12 +1,10 @@
 package com.ram.jh.inventory.data;
 
-import com.ram.jh.inventory.util.Utilities;
+import com.ram.jh.inventory.util.Utils;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-public class LookupRGBMapTest {
+public class DataConstantsTest {
 
 
     @Test
@@ -14,7 +12,7 @@ public class LookupRGBMapTest {
 
         String basicColor = "Black";
         String expectedVal = "000000";
-        String actualVal = Utilities.lookupColor(basicColor);
+        String actualVal = Utils.lookupColor(basicColor);
         Assert.assertEquals(expectedVal,actualVal);
     }
 
@@ -23,7 +21,7 @@ public class LookupRGBMapTest {
 
         String basicColor = "XYZ";
         String expectedVal = "na";
-        String actualVal = Utilities.lookupColor(basicColor);
+        String actualVal = Utils.lookupColor(basicColor);
         Assert.assertEquals(expectedVal,actualVal);
     }
 }
